@@ -1,8 +1,9 @@
-
+'use client'
 import {Magnifier,ChartLineArrowUp,File,Rocket,
     Factory,Bookmark,ArrowUpRight,Sparkles
 
 } from '@gravity-ui/icons';
+import { motion } from "motion/react"
 
 const FeaturesSection = () => {
 
@@ -67,19 +68,31 @@ const features = [
             const Icon = item.icon;
 
             return (
-              <div
-                key={i}
-                className="group p-5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300"
-              >
-                {/* icon */}
-                <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/10 mb-4 group-hover:bg-purple-500/20 transition">
-                  <Icon className="w-5 h-5 text-purple-300" />
-                </div>
+         <motion.div
+  key={i}
+ 
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration:1, delay: i * 0.1 }}
+  viewport={{ once: true }}
+  whileHover={{ scale: 1.05 }}
+  
+  className="group p-5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300"
+>
+  {/* icon */}
+  <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/10 mb-4 group-hover:bg-purple-500/20 transition">
+    <Icon className="w-5 h-5 text-purple-300" />
+  </div>
 
-                {/* text */}
-                <h3 className="text-lg font-medium">{item.title}</h3>
-                <p className="text-sm text-gray-400 mt-2">{item.desc}</p>
-              </div>
+  {/* text */}
+  <h3 className="text-lg font-medium">
+    {item.title}
+  </h3>
+
+  <p className="text-sm text-gray-400 mt-2">
+    {item.desc}
+  </p>
+</motion.div>
             );
           })}
         </div>

@@ -1,15 +1,24 @@
-
-
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
+import { authClient, useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+
 
 
 export default function Navbar() {
+  const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
- 
+const {data :session}=useSession()
+const user = session?.user
+console.log(user);
+const handleSignOut =async()=>{
+  await authClient.signOut({})
+  router.push('/')
+  
+}
 
   const navLinks = [
     {
@@ -32,7 +41,7 @@ export default function Navbar() {
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600 to-fuchsia-500 shadow-lg">
-            <span className="text-xl font-bold text-white">HP</span>
+            <span className="text-xl font-bold text-white">P</span>
           </div>
 
           <div className="hidden leading-none sm:block">
@@ -64,7 +73,7 @@ export default function Navbar() {
             <div className="h-6 w-px bg-white/20" />
 
             {/* Auth Links */}
-            {/* <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4">
               {
                 user ?
                   <>
@@ -74,7 +83,7 @@ export default function Navbar() {
                   </>
                   :
                   <Link
-                    href="/auth/signin"
+                    href="/signin"
                     className="text-sm font-medium text-violet-400 transition hover:text-violet-300"
                   >
                     Sign In
@@ -88,7 +97,7 @@ export default function Navbar() {
               >
                 Get Started
               </Button>
-            </div> */}
+            </div>
           </div>
 
           {/* MOBILE MENU BUTTON */}

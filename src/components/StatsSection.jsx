@@ -6,6 +6,7 @@ import {
     Magnifier,
     Star,
 } from "@gravity-ui/icons";
+import { motion } from "motion/react"
 
 export default function StatsSection() {
     const stats = [
@@ -60,7 +61,10 @@ export default function StatsSection() {
                         <br />
                         find their dream positions.
                     </h2>
-                    <p animate={{ rotate: -45 }}>Remote Jobs</p>
+                    <motion.p  animate={{
+    scale: 2,
+    transition: { duration: 2 }
+  }}>Remote Jobs</motion.p>
                     <p initial={{ scale: 0 }} animate={{ scale: 1 }}>On-site Jobs</p>
                 </div>
 
