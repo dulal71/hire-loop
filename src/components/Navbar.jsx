@@ -13,7 +13,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 const {data :session}=useSession()
 const user = session?.user
-console.log(user);
+
 const handleSignOut =async()=>{
   await authClient.signOut({})
   router.push('/')
