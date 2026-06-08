@@ -1,6 +1,6 @@
 'use server'
-const baseUrl=process.env.SERVER_URL
 
+const baseUrl=process.env.SERVER_URL
 export const serverMutation= async(path, data)=>{
 
     const res = await fetch(`${baseUrl}${path}`,{

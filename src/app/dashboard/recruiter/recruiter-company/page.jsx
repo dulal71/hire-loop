@@ -5,9 +5,8 @@ import { getSession } from '@/lib/api/session';
 
 const RecruiterCompany =async () => {
     const user = await getSession()
-   
    const company = await getRecruiterCompany(user?.id)
-   console.log(company);
+   
 
     return (
         <div>

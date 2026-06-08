@@ -11,6 +11,11 @@ const data = await res.json()
 return data;
 }
 
+export const getJobs=async()=>{
+    return serverFetch('/api/jobs')
+}
+
+
 export const getRecruiterCompany=async(recruiterId)=>{
 return serverFetch(`/api/my/company?recruiterId=${recruiterId}`)
 }

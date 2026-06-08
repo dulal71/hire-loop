@@ -27,7 +27,7 @@ const listItemClasses = "text-zinc-300 px-3 py-2 rounded-md cursor-pointer hover
 const textAreaClass = "w-full bg-zinc-900/50 border border-zinc-800 text-white rounded-lg p-3 outline-none placeholder:text-zinc-600 focus:border-zinc-700 transition resize-none";
 
 const CompanyProfile = ({recruiter,recruiterCompany}) => {
-  console.log(recruiterCompany);
+
     const [company, setCompany] = useState(recruiterCompany);
    const [isEditing, setIsEditing] = useState(false);
     const [errors, setErrors] = useState({});
