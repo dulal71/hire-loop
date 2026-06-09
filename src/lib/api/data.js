@@ -14,6 +14,9 @@ return data;
 export const getJobs=async()=>{
     return serverFetch('/api/jobs')
 }
+export const getJobById=async(jobId)=>{
+    return serverFetch(`/api/jobs/${jobId}`)
+}
 
 
 export const getRecruiterCompany=async(recruiterId)=>{

@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Button, Link } from "@heroui/react";
 import { MapPin, Briefcase, CircleDollar, ArrowRight } from "@gravity-ui/icons";
+import Image from "next/image";
 
 export default function JobCard({ job }) {
   // Guard clause in case the prop isn't passed or is loading
@@ -27,7 +28,9 @@ export default function JobCard({ job }) {
       <Card.Header className="flex flex-col items-start gap-4 p-0 pb-3">
         <div className="flex items-center gap-3">
           {job.companyLogo && (
-            <img
+            <Image
+            width={36}
+            height={36}
               src={job.companyLogo}
               alt={`${job.companyName || "Company"} logo`}
               className="w-8 h-8 object-contain rounded-md"
