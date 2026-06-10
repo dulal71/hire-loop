@@ -11,7 +11,6 @@ import {
     Person,
     Briefcase,
     Rocket,
-    // Zap,
     Star
 } from '@gravity-ui/icons';
 
