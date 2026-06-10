@@ -31,7 +31,7 @@ const handleSignOut =async()=>{
     },
     {
       label: "Pricing",
-      href: "/pricing",
+      href: "/plans",
     },
   ];
 
