@@ -4,13 +4,47 @@ import {LayoutSideContent
 LayoutHeaderSideContent,
 Bookmark,
 FileText,
-CreditCard} from "@gravity-ui/icons";
+CreditCard,
+Factory} from "@gravity-ui/icons";
 import {Button, Drawer} from "@heroui/react";
 import { aside } from "motion/react-client";
 import Link from "next/link";
 
 const DashboardSidebar =async () => {
   const user = await getSession()
+  const adminLinks = [
+  { 
+    icon: LayoutHeaderSideContent, 
+    href: "/dashboard/admin", 
+    label: "Dashboard" 
+  },
+  { 
+    icon: Person, 
+    href: "/dashboard/admin/users", 
+    label: "Users" 
+  },
+  { 
+    icon: Factory, 
+    href: "/dashboard/admin/companies", 
+    label: "Companies" 
+  },
+  { 
+    icon: Bell, 
+    href: "/dashboard/admin/jobs", 
+    label: "Jobs" 
+  },
+  { 
+    icon: CreditCard, 
+    href: "/dashboard/admin/payments", 
+    label: "Payments" 
+  },
+  { 
+    icon: Gear, 
+    href: "/dashboard/admin/settings", 
+    label: "Settings" 
+  },
+];
+
       const recruiterLinks  = [
     {icon: House, href:"/dashboard/recruiter", label: "Home"},
     {icon: Magnifier,href:"/dashboard/recruiter/jobs", label: "Jobs"},
@@ -19,6 +53,7 @@ const DashboardSidebar =async () => {
     {icon: Person,href:"/", label: "Profile"},
     {icon: Gear,href:"/", label: "Settings"},
   ];
+
   const jobSeekerLinks = [
   { 
     icon: LayoutHeaderSideContent, // Matches the 4-square dashboard icon
@@ -53,7 +88,8 @@ const DashboardSidebar =async () => {
 ];
 const userNavLinks={
   seeker:jobSeekerLinks,
-  recruiter:recruiterLinks
+  recruiter:recruiterLinks,
+  admin:adminLinks
 }
 const navItems=userNavLinks[user?.role || 'seeker']
   const navLink=<>

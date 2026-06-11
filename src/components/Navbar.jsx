@@ -17,8 +17,8 @@ const user = session?.user
 const handleSignOut =async()=>{
   try{
  await authClient.signOut({})
-  router.push('/')
-  router.refresh()
+
+ window.location.href = '/';
   }catch(error){
     console.error('Sign out failed:', error)
   }
@@ -43,7 +43,8 @@ const handleSignOut =async()=>{
  
   const dashboardLink={
     recruiter: '/dashboard/recruiter',
-    seeker: '/dashboard/seeker'
+    seeker: '/dashboard/seeker',
+    admin: '/dashboard/admin'
   }
 
   if(user?.email){
