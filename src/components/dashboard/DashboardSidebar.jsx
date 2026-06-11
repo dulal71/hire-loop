@@ -1,11 +1,17 @@
+import { getSession } from "@/lib/api/session";
 import {LayoutSideContent
-, Bell, Envelope, Gear, House, Magnifier, Person} from "@gravity-ui/icons";
+, Bell, Envelope, Gear, House, Magnifier, Person,
+LayoutHeaderSideContent,
+Bookmark,
+FileText,
+CreditCard} from "@gravity-ui/icons";
 import {Button, Drawer} from "@heroui/react";
 import { aside } from "motion/react-client";
 import Link from "next/link";
 
-const DashboardSidebar = () => {
-      const navItems  = [
+const DashboardSidebar =async () => {
+  const user = await getSession()
+      const recruiterLinks  = [
     {icon: House, href:"/dashboard/recruiter", label: "Home"},
     {icon: Magnifier,href:"/dashboard/recruiter/jobs", label: "Jobs"},
     {icon: Bell,href:"/dashboard/recruiter/jobs/new-jobs",  label:"Create A Job"},
@@ -13,6 +19,43 @@ const DashboardSidebar = () => {
     {icon: Person,href:"/", label: "Profile"},
     {icon: Gear,href:"/", label: "Settings"},
   ];
+  const jobSeekerLinks = [
+  { 
+    icon: LayoutHeaderSideContent, // Matches the 4-square dashboard icon
+    href: "/dashboard/seeker", 
+    label: "Dashboard" 
+  },
+  { 
+    icon: Magnifier, // Matches the magnifying glass icon for "Jobs"
+    href: "/dashboard/seeker/jobs", 
+    label: "Jobs" 
+  },
+  { 
+    icon: Bookmark, // Matches the ribbon/bookmark icon for "Saved Jobs"
+    href: "/dashboard/seeker/saved-jobs", 
+    label: "Saved Jobs" 
+  },
+  { 
+    icon: FileText, // Matches the document icon for "Applications"
+    href: "/dashboard/seeker/applications", 
+    label: "Applications" 
+  },
+  { 
+    icon: CreditCard, // Matches the cash/card icon for "Billing"
+    href: "/dashboard/seeker/billing", 
+    label: "Billing" 
+  },
+  { 
+    icon: Gear, // Matches the gear icon for "Settings"
+    href: "/dashboard/seeker/settings", 
+    label: "Settings" 
+  },
+];
+const userNavLinks={
+  seeker:jobSeekerLinks,
+  recruiter:recruiterLinks
+}
+const navItems=userNavLinks[user?.role || 'seeker']
   const navLink=<>
   <nav className="flex flex-col gap-1">
                 {navItems.map((item) => (

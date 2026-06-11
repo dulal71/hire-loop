@@ -40,7 +40,18 @@ const handleSignOut =async()=>{
       href: "/plans",
     },
   ];
+ 
+  const dashboardLink={
+    recruiter: '/dashboard/recruiter',
+    seeker: '/dashboard/seeker'
+  }
 
+  if(user?.email){
+    navLinks.push({
+      label:'Dashboard',
+      href:dashboardLink[user?.role || 'seeker']
+    })
+  }
   return (
     <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#0B0B0F]/80 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
