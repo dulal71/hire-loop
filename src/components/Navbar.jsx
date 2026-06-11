@@ -15,8 +15,14 @@ const {data :session}=useSession()
 const user = session?.user
 
 const handleSignOut =async()=>{
-  await authClient.signOut({})
+  try{
+ await authClient.signOut({})
   router.push('/')
+  router.refresh()
+  }catch(error){
+    console.error('Sign out failed:', error)
+  }
+ 
   
 }
 

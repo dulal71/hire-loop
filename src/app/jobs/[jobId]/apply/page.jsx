@@ -6,6 +6,7 @@ import React from 'react';
 // Importing basic Gravity UI icons if you already have them installed, or use standard SVGs
 import { ShieldCheck, Briefcase,CircleDollar } from '@gravity-ui/icons';
 import Link from 'next/link';
+import { getPlanById } from '@/lib/api/plans';
 
 const ApplyJob = async ({ params }) => {
   const { jobId } = await params;
@@ -33,10 +34,7 @@ const ApplyJob = async ({ params }) => {
   }
 
   const applications = await getApplicationByApplicant(user.id);
-  const plan = {
-    name: 'Free Tier',
-    maxApplicationPerMonth: 3
-  };
+  const plan = await getPlanById(user?.plan || 'seeker_free')
   const job = await getJobById(jobId);
 
   const applicationsLeft = plan.maxApplicationPerMonth - applications.length;

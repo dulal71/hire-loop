@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { stripe } from '@/lib/stripe'
+import { addSubscription } from '@/lib/action/subscriptions'
 
 
 export default async function Success({ searchParams }) {
@@ -22,6 +23,12 @@ export default async function Success({ searchParams }) {
   }
 
   if (status === 'complete') {
+    const subsInfo={
+      email:customerEmail,
+      planId:session.metadata.planId
+    }
+    const res = await addSubscription(subsInfo)
+    console.log(res);
     return (
       <section className="min-h-screen  flex flex-col items-center justify-center p-4">
         <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-gray-100">
