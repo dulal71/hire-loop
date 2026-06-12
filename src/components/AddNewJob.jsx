@@ -19,9 +19,10 @@ import { Briefcase, Globe } from "@gravity-ui/icons";
 
 import { redirect } from "next/navigation";
 import { createJob } from "@/lib/action/job";
+import { div } from "motion/react-client";
 
 const AddNewJob = ({company}) => {
-   
+   console.log(company);
     const [isRemote, setIsRemote] = useState(false);
     const [errors, setErrors] = useState({});
 
@@ -96,12 +97,16 @@ const AddNewJob = ({company}) => {
                     <div className="mt-4 inline-flex items-center gap-2 bg-zinc-900/50 border border-zinc-800 rounded-lg px-3 py-1.5 text-xs text-zinc-400">
                         <Briefcase size={14} className="text-zinc-500" />
                         Posting as: <span className="font-semibold text-zinc-300">{company.name}</span>
-                        <span className="text-emerald-500 font-medium bg-emerald-950/30 px-1.5 py-0.5 rounded border border-emerald-900/50">Approved</span>
+                        <span className={` font-medium bg-emerald-950/30 px-1.5 py-0.5 rounded border  ${company.status=== 'Pending'? 'text-amber-500 border-amber-900/50' : company.status === 'Rejected '? 'text-red-500 border-red-900/50' :'text-emerald-500 border-emerald-900/50'}`}>{company.status}</span>
                     </div>
                 </div>
 
-                {/* Hero UI Main Form Handler */}
-                <Form onSubmit={handleSubmit} className="space-y-8" validationErrors={errors} validationBehavior='aria'>
+{
+    company.status !== 'Approved' && <div> please wait to get approval</div>
+}
+                {/*Hero UI Main Form Handler */}
+                {
+                    company.status === 'Approved' && <Form onSubmit={handleSubmit} className="space-y-8" validationErrors={errors} validationBehavior='aria'>
 
                     {/* SECTION 1: Job Information */}
                     <Fieldset className="space-y-6 w-full">
@@ -276,6 +281,7 @@ const AddNewJob = ({company}) => {
                         </Button>
                     </div>
                 </Form>
+                }
             </div>
         </div>
     );

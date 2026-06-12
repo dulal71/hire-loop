@@ -105,7 +105,7 @@ const CompanyProfile = ({recruiter,recruiterCompany}) => {
             employeeCount: employeeCount || '1-10 employees',
             description,
             logo: logoUrl || (company ? company.logo : ''),
-            status: company ? company.status : 'Pending', // Retains status if updating profile details
+            status: company && company.status ?  company.status : 'Pending', 
             recruiterId: recruiter.id// Associate company with the current recruiter
         }
         setCompany(newCompanyData);
@@ -113,7 +113,9 @@ const CompanyProfile = ({recruiter,recruiterCompany}) => {
         console.log("Submitted Company Profile Data:", newCompanyData);
  const res = await addCompany(newCompanyData)
  if (res.insertedId) {
-              toast.success("Job posted successfully!");
+    const newCompany={...newCompanyData, _id:res.insertedId}
+    setCompany(newCompany)
+              alert("Job posted successfully!");
      }
     };
 
@@ -342,6 +344,7 @@ const CompanyProfile = ({recruiter,recruiterCompany}) => {
                 <div className="flex justify-end gap-3 pt-5 border-t border-zinc-900 w-full">
                     {company && (
                         <Button
+                       
                             type="button"
                             variant="bordered"
                             onPress={() => setIsEditing(false)}

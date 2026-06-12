@@ -7,7 +7,8 @@ const  PostJobPage = async()=> {
     // Mock configuration for recruiter's authenticated state
     
 const company = await getLoggedInRecruiterCompany()
-    return (
+   console.log(company);
+return (
       <div>
        <AddNewJob company={company}></AddNewJob> 
       </div>  

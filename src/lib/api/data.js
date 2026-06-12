@@ -31,3 +31,7 @@ return getRecruiterCompany(user?.id)
 export const getApplicationByApplicant=async(applicantId)=>{
     return serverFetch(`/api/application?applicantId=${applicantId}`)
 }
+
+export const getCompanies=async()=>{
+    return serverFetch('/api/companies')
+}
