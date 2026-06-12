@@ -99,6 +99,11 @@ const CompanyRow = ({ company, onApprove, onReject }) => {
                     {company.industry || 'Technology'}
                 </span>
             </td>
+            <td className="py-4 px-6 align-middle">
+                <span className="text-[12px] text-zinc-400 bg-zinc-800/60 border border-zinc-800 px-2.5 py-1 rounded-full">
+                    {company.postJobs }
+                </span>
+            </td>
 
             {/* Status Dot */}
             <td className="py-4 px-6 align-middle">
@@ -187,6 +192,7 @@ export const CompaniesTable = ({ data = [] }) => {
                         <th className="py-4 px-6">Company Name</th>
                         <th className="py-4 px-6">Location / Size</th>
                         <th className="py-4 px-6">Industry</th>
+                        <th className="py-4 px-6">Post-Jobs</th>
                         <th className="py-4 px-6">Status</th>
                         <th className="py-4 px-6">Date Submitted</th>
                         <th className="py-4 px-6 text-right sm:text-left">Actions</th>

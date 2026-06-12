@@ -12,9 +12,7 @@ const Companies = async () => {
                 
               
                 <CompanyStats data={companies} />
-
-               
-                <CompaniesTable data={companies} />
+<CompaniesTable data={companies} />
                 
             </div>
         </div>
