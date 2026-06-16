@@ -1,5 +1,6 @@
 'use server'
 
+import { redirect } from "next/navigation"
 import { getUserToken } from "../api/session"
 
 
@@ -26,5 +27,14 @@ export const serverMutation= async(path, data , method = 'POST')=>{
      body:JSON.stringify(data)
     })
  
- return res.json()
+return handleStatusCode(res)
+}
+// handle 401,402,404
+const handleStatusCode=(res)=>{
+    if(res.status === 401){
+        redirect("/unauthorized")
+    }else if (res.status === 403){
+        redirect('/forbidden')
+    }
+     return res.json()
 }

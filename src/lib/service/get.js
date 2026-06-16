@@ -12,5 +12,14 @@ export const protectedFetch=async(path)=>{
     const res = await fetch(`${baseUrl}${path}`,{
         headers: await authHeader()
     })
-    return res.json()
+    return handleStatusCode(res)
+}
+
+const handleStatusCode =(res)=>{
+    if(res.status === 401){
+        redirect("/unauthorized")
+    }else if (res.status === 403){
+        redirect('/forbidden')
+    }
+     return res.json()
 }

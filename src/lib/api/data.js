@@ -6,9 +6,8 @@ import { getSession } from "./session"
 const baseUrl=process.env.SERVER_URL
 
 export const  getRecruiterJobs=async(companyId, status = "active")=>{
-const res = await fetch(`${baseUrl}/api/jobs?companyId=${companyId}&status=${status}`)
-const data = await res.json()
-return data;
+return protectedFetch(`/api/jobs?companyId=${companyId}&status=${status}`)
+
 }
 
 export const getJobs=async()=>{
@@ -20,7 +19,7 @@ export const getJobById=async(jobId)=>{
 
 
 export const getRecruiterCompany=async(recruiterId)=>{
-return serverFetch(`/api/my/company?recruiterId=${recruiterId}`)
+return protectedFetch(`/api/my/company?recruiterId=${recruiterId}`)
 }
 
 export const getLoggedInRecruiterCompany=async()=>{

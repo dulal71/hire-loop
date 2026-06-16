@@ -1,15 +1,9 @@
 'use server'
 
-const baseUrl=process.env.SERVER_URL
-export const createJob= async(newJobData)=>{
+import { serverMutation } from "../service/post"
 
-    const res = await fetch(`${baseUrl}/api/jobs`,{
-     method:"POST",
-     headers:{
-      'Content-type':'application/json',
-     } ,
-     body:JSON.stringify(newJobData)
-    })
- const data = await res.json()
- return data;
+
+export const createJob= async(newJobData)=>{
+return serverMutation('/api/jobs',newJobData)
+    
 }
