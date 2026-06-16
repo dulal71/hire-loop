@@ -1,6 +1,6 @@
 'use server'
 
-import { serverFetch } from "../service/get"
+import { protectedFetch, serverFetch } from "../service/get"
 import { getSession } from "./session"
 
 const baseUrl=process.env.SERVER_URL
@@ -33,5 +33,5 @@ export const getApplicationByApplicant=async(applicantId)=>{
 }
 
 export const getCompanies=async()=>{
-    return serverFetch('/api/companies')
+    return  protectedFetch('/api/companies')
 }

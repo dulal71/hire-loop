@@ -8,6 +8,17 @@ export const getSession=async()=>{
 })  
 return session?.user || null;
 }
+export const getUserToken=async()=>{
+  const session = await auth.api.getSession({
+    headers: await headers() 
+})  
+console.log(session);
+return session?.session?.token || null;
+}
+
+
+
+
 export const requireRole=async(role)=>{
 const user = await getSession()
 if(!user){
