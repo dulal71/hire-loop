@@ -1,7 +1,7 @@
 "use client";
-import {Description,  Radio, RadioGroup} from "@heroui/react";
+import {  Radio, RadioGroup} from "@heroui/react";
 import { useState } from "react";
-import { Card, Button, Link, TextField, Label, InputGroup, Input, FieldError } from "@heroui/react";
+import { Card, Button, Link, TextField, Label, InputGroup, Input, } from "@heroui/react";
 import { Eye, EyeSlash, Person, At, ShieldKeyhole } from "@gravity-ui/icons";
 import { authClient} from "@/lib/auth-client";
 import { useRouter, useSearchParams } from "next/navigation";
