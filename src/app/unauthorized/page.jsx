@@ -19,7 +19,7 @@ const Unauthorized = () => {
                     </div>
                     
                     <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
-                        403 - Unauthorized
+                        401 - Unauthorized
                     </h1>
                     
                     <p className="mt-3 text-sm text-gray-500 max-w-sm mx-auto">

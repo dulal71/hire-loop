@@ -10,8 +10,8 @@ return protectedFetch(`/api/jobs?companyId=${companyId}&status=${status}`)
 
 }
 
-export const getJobs=async()=>{
-    return serverFetch('/api/jobs')
+export const getJobs=async(queryString)=>{
+    return serverFetch(`/api/jobs?${queryString}`)
 }
 export const getJobById=async(jobId)=>{
     return serverFetch(`/api/jobs/${jobId}`)

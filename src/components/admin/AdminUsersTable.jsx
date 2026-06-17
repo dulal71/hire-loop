@@ -80,17 +80,32 @@ export default function AdminUsersTable({ users }) {
                                 const userId = getUserId(user);
                                 const userRole = user.role?.toLowerCase() || 'seeker';
                                 const userStatus = user.status || 'Active';
+                                const isAdmin = userRole === 'admin';
 
                                 return (
-                                    <tr key={userId} className="hover:bg-zinc-900/40 transition-colors duration-150">
+                                    <tr 
+                                        key={userId} 
+                                        className={`transition-colors duration-150 ${
+                                            isAdmin 
+                                                ? 'bg-purple-950/10 border-l-2 border-l-purple-500/80 hover:bg-purple-950/20' 
+                                                : 'hover:bg-zinc-900/40'
+                                        }`}
+                                    >
 
                                         {/* User Name + Initial Avatar */}
-                                        <td className="py-4 px-6 font-medium text-zinc-200 whitespace-nowrap">
+                                        <td className="py-4 px-6 font-medium whitespace-nowrap">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-8 h-8 rounded-full bg-zinc-700/60 flex items-center justify-center text-xs text-zinc-300 font-bold tracking-wider">
+                                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold tracking-wider ${
+                                                    isAdmin 
+                                                        ? 'bg-purple-900/50 text-purple-300 border border-purple-700/40' 
+                                                        : 'bg-zinc-700/60 text-zinc-300'
+                                                }`}>
                                                     {user.name ? user.name.split(' ').map(n => n[0]).join('').toUpperCase() : 'U'}
                                                 </div>
-                                                <span>{user.name || 'Unknown User'}</span>
+                                                <span className={isAdmin ? 'text-purple-300 font-semibold' : 'text-zinc-200'}>
+                                                    {user.name || 'Unknown User'}
+                                                    {isAdmin && <span className="ml-1.5 text-[10px] bg-purple-500/20 text-purple-400 px-1 py-0.5 rounded font-normal uppercase tracking-wide">Staff</span>}
+                                                </span>
                                             </div>
                                         </td>
 
@@ -106,8 +121,8 @@ export default function AdminUsersTable({ users }) {
                                                     <Briefcase width={12} height={12} />
                                                     Recruiter
                                                 </span>
-                                            ) : userRole === 'admin' ? (
-                                                <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full bg-purple-950/40 text-purple-300 border border-purple-800/50 capitalize">
+                                            ) : isAdmin ? (
+                                                <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full bg-purple-500 text-white shadow-md capitalize">
                                                     Admin
                                                 </span>
                                             ) : (
@@ -142,8 +157,8 @@ export default function AdminUsersTable({ users }) {
                                         <td className="py-4 px-6 text-right whitespace-nowrap text-xs font-medium">
                                             <div className="flex items-center justify-end gap-4">
 
-                                                {/* Adjusted triggers to leverage modal state routing safely */}
-                                                {userRole !== 'admin' && (
+                                                {/* Role Management Actions */}
+                                                {!isAdmin && (
                                                     <button
                                                         onClick={() => initiateRoleChange(userId, user.name, 'admin')}
                                                         className="text-zinc-400 hover:text-white transition-colors"
